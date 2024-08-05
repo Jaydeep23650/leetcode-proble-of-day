@@ -6,13 +6,13 @@ public:
             mp[it]++;
 
         }
-        string ans="";
+        // string ans="";
         for(auto it:arr){
             if(mp[it]==1){
                 k--;
-                if(k==0)ans=it;
+                if(k==0)return it;
             }
         }
-        return ans;
+        return "";
     }
 };
