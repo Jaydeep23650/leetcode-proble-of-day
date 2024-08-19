@@ -2,7 +2,7 @@ class Solution {
 public:
     
     int ans=0;
-    void dfs(vector<int>mp[],int i,vector<int>&vis){
+    void dfs(map<int,vector<int>>mp,int i,vector<int>&vis){
          queue<int>q;
          q.push(i);
          int node=0,edge=0;
@@ -24,7 +24,7 @@ public:
     }
 
     int countCompleteComponents(int n, vector<vector<int>>& edges) {
-         vector<int>mp[n];
+         map<int,vector<int>>mp;
         vector<int>vis(n,0);
         for(auto it:edges){
             mp[it[0]].push_back(it[1]);
