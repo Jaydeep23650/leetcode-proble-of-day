@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minFlips(int a, int b, int c) {
-     vector<int>v1(101,0),v2(101,0),v3(101,0);
+     vector<int>v1(32,0),v2(32,0),v3(32,0);
      int i=0;
      while(a||b||c){
         v1[i]=(a%2);
@@ -13,7 +13,7 @@ public:
         c/=2;
      }
      int ans=0;
-      for(int i=0;i<100;i++){
+      for(int i=0;i<32;i++){
         if((v1[i]||v2[i])!=v3[i]){
           if(v1[i]&v2[i])ans=ans+2;
           else ans++;
