@@ -8,6 +8,6 @@ public:
                 ans=max(ans,count);
             }else count=0;
         }
-        return    ans=max(ans,count);
+        return    ans;
     }
 };
