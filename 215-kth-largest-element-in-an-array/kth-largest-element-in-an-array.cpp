@@ -5,9 +5,9 @@ public:
         for(int i=0;i<nums.size();i++){
             q.push(nums[i]);
             if(q.size()>k){
-                while(q.size()>k){
+                // while(q.size()>k){
                     q.pop();
-                }
+                // }
             }
         }
         return q.top();
