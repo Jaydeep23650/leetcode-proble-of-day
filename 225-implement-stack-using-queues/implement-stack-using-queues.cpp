@@ -4,23 +4,28 @@ public:
     MyStack() {
         
     }
-    deque<int>q;
+    queue<int>q;
 
     void push(int x) {
-        q.push_back(x);
+        q.push(x);
+        int n=q.size();
+        for(int i=0;i<n-1;i++){
+            q.push(q.front());
+            q.pop();
+        }
     }
     
     int pop() {
         if(!q.empty()){
-            int ans=q.back();
-            q.pop_back();
+            int ans=q.front();
+            q.pop();
             return ans;
         } return NULL;
     }
     
     int top() {
        if(!q.empty()){
-            int ans=q.back();
+            int ans=q.front();
             return ans;
         } else return -1;
     }
