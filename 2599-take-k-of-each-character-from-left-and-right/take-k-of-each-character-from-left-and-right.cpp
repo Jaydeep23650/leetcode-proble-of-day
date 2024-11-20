@@ -5,6 +5,7 @@ public:
         int left = 0, right = 0;
         int count_a = 0, count_b = 0, count_c = 0;
         for (auto it : s) {
+            //store frequency of all charactors
             if (it == 'a')
                 count_a++;
             else if (it == 'b')
@@ -13,9 +14,11 @@ public:
                 count_c++;
         }
         int time = INT_MAX;
+        //check frequency of all charactor present in string or not 
         if (count_a < k || count_b < k || count_c < k)
             return -1;
         while (right < n) {
+            //decrease frequency of charactors
             if (s[right] == 'a') {
                 count_a--;
             } else if (s[right] == 'b') {
@@ -24,6 +27,7 @@ public:
             } else {
                 count_c--;
             }
+            //increase freeq. if less than k
             if (count_a < k || count_b < k || count_c < k) {
                 while (count_a < k || count_b < k || count_c < k) {
                     if (s[left] == 'a') {
@@ -38,6 +42,7 @@ public:
                     
                 }
             }
+        // count number of char should be remove
             int t=count_a+count_b+count_c;
             time=min(time,t);
             right++;
