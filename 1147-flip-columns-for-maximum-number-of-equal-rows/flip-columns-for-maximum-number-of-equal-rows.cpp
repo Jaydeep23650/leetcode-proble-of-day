@@ -1,22 +1,20 @@
 class Solution {
 public:
     int maxEqualRowsAfterFlips(vector<vector<int>>& matrix) {
-        int n=matrix.size();
-        int ans=0;
-        int m=matrix[0].size();
+        map<string,int>mp;
         for(auto it:matrix){
-            //make a vector just flip of original vector
-            vector<int>v;
+            string s="";
+            int temp=it[0];
             for(auto i:it){
-                v.push_back(1-i);
+                if(i==temp)s.push_back('s');
+                else s.push_back('B');
             }
-            int count=0;
-            //count all vector equal to original or flip vector
-            for(auto s:matrix){ 
-                if(s==it||v==s)count++;
-            }
-            ans=max(ans,count);
+            mp[s]++;
         }
-       return ans;
+        int ans=0;
+        for(auto it:mp){
+            ans=max(ans,it.second);
+        }
+        return ans;
     }
 };
