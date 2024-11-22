@@ -5,12 +5,14 @@ public:
         int ans=0;
         int m=matrix[0].size();
         for(auto it:matrix){
+            //make a vector just flip of original vector
             vector<int>v;
             for(auto i:it){
                 v.push_back(1-i);
             }
             int count=0;
-            for(auto s:matrix){
+            //count all vector equal to original or flip vector
+            for(auto s:matrix){ 
                 if(s==it||v==s)count++;
             }
             ans=max(ans,count);
