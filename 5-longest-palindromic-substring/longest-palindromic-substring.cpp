@@ -1,38 +1,28 @@
 class Solution {
 public:
+      int v[1001][1001];
+     bool solve(string &s,int i,int j){
+        if(i>=j)return 1;
+        if(v[i][j]!=-1)return v[i][j];
+        if(s[i]==s[j]){
+           return v[i][j]= solve(s,i+1,j-1);
+        }
+        return v[i][j]=0;
+     }
+
     string longestPalindrome(string s) {
-        int n = s.size();
-        string ans = "";
-        string t = "#";
-        for (int i = 0; i < n; i++) {
-            t.push_back(s[i]);
-            t.push_back('#');
-        }
-        for (int i = 0; i < 2 * n; i++) {
-            string temp = "";
-            if (t[i] != '#') {
-                temp.push_back(t[i]);
-            }
-            int k = i - 1;
-            int j = i + 1;
-            while (k >= 0 && j < 2 * n) {
-                if (t[j] == t[k]) {
-                    if (t[k] != '#') {
-                        temp = t[k]+temp;
+        memset(v,-1,sizeof(v));
+        int mx=0,n=s.size(),t=0;
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                if(solve(s,i,j)==true){
+                    if(mx<j-i+1){
+                        mx=j-i+1;
+                        t=i;
                     }
-                    if (t[j] != '#') {
-                        temp.push_back(t[j]);
-                    }
-                } else {
-                    break;
                 }
-                k--;
-                j++;
-            }
-            if (temp.size() > ans.size()) {
-                ans = temp;
             }
         }
-        return ans;
+        return s.substr(t,mx);
     }
 };
