@@ -1,7 +1,7 @@
 class Solution {
 public:
 
-
+     //check how many time will require to eat all banana
     bool possible(vector<int>& piles,int mid, int h){
         int count=0;
         for(auto it:piles){
@@ -19,6 +19,7 @@ public:
         int ans=0;
         int low=1,high=piles[n-1];
         while(high>=low){
+            //choose value of k 
             int mid=(low+high)/2;
             if(possible(piles,mid,h)){
                 ans=mid;
