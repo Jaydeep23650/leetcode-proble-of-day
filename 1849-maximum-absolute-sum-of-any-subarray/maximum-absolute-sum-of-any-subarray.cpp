@@ -1,29 +1,28 @@
+#include <vector>
+#include <algorithm>
+#include <climits>
+
 class Solution {
 public:
-     
-    int maxAbsoluteSum(vector<int>& nums) {
-        int ans=INT_MIN;
-        int sum=0;
-        // first colculate highest sum using kadane
-        for(auto it:nums){
-               if(sum<0)sum=0;
-            sum+=it;
-         
-            ans=max(ans,sum);
-        }
-        // for absolute -1 multiply each elements 
-        for(int i=0;i<nums.size();i++){
-            nums[i]=-nums[i];
+    int maxAbsoluteSum(std::vector<int>& nums) {
+        int maxSum = INT_MIN;
+        int currentSum = 0;
+
+        // First pass: Find maximum subarray sum
+        for (int num : nums) {
+            currentSum = std::max(currentSum + num, num);
+            maxSum = std::max(maxSum, currentSum);
         }
 
-        sum=0;
-        // first colculate highest sum using kadane .. this done for find lowest sum 
-        for(auto it:nums){
-             if(sum<0)sum=0;
-            sum+=it;
-           
-            ans=max(ans,sum);
+        // Reset currentSum for the second pass
+        currentSum = 0;
+
+        // Second pass: Find maximum subarray sum of negated values
+        for (int num : nums) {
+            currentSum = std::max(currentSum - num, -num);
+            maxSum = std::max(maxSum, currentSum);
         }
-        return ans;
+
+        return maxSum;
     }
 };
