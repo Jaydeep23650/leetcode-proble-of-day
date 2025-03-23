@@ -12,11 +12,11 @@ class Solution {
 public:
     // Recursive function to reverse the linked list
     ListNode* reverse(ListNode* head) {
-        // Base case: if the list is empty or has only one node
+        //  if the list is empty or has only one node
         if (head == nullptr || head->next == nullptr) {
             return head;
         }
-        // Recursive case: reverse the rest of the list
+        // reverse the rest of the list
         ListNode* newHead = reverse(head->next);
         // Reverse the current node's pointer
         head->next->next = head;
@@ -24,10 +24,10 @@ public:
         return newHead; // Return the new head of the reversed list
     }
 
-    // Function to add two numbers represented by linked lists
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        // Reverse both input lists to make addition easier
-        ListNode* num1 = (l1);
+
+    //////////////////////////////////
+    ListNode* solve1(ListNode* l1, ListNode* l2){
+         ListNode* num1 = (l1);
         ListNode* num2 = (l2);
         
         ListNode* dummyHead = new ListNode(0); // Dummy node to simplify result list creation
@@ -37,7 +37,6 @@ public:
         // Process both lists and carry
         while (num1 || num2 || carry) {
             int sum = carry; // Start with the carry
-            
             // Add value from the first list if available
             if (num1) {
                 sum += num1->val;
@@ -56,5 +55,39 @@ public:
 
         // Reverse the result list before returning
         return (dummyHead->next);
+    }
+
+      /////////////////////////////////////////////////////////////////////////////////////
+
+      ListNode* solve2(ListNode* l1, ListNode* l2){
+          ListNode * num1=(l1);
+          ListNode* num2=(l2);
+          ListNode* dummy=new ListNode(0),*temp;
+          int carry=0;
+          temp=dummy;
+          while(num1||num2||carry){
+            int sum=carry;
+             if(num1){
+                sum+=num1->val;
+                num1=num1->next;
+             }
+             if(num2){
+                sum+=num2->val;
+                num2=num2->next;
+             }
+             carry=sum/10;
+             temp->next=new ListNode(sum%10);
+             temp=temp->next;
+          }
+          dummy=dummy->next;
+          return (dummy);
+
+      }
+
+    // Function to add two numbers represented by linked lists
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        // Reverse both input lists to make addition easier
+        return solve2(l1,l2);
+       
     }
 };
