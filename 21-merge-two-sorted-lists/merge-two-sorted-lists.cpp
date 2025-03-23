@@ -10,8 +10,9 @@
  */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode * dummy=new ListNode(0);
+
+    ListNode* solve1(ListNode* list1, ListNode* list2){
+         ListNode * dummy=new ListNode(0);
         ListNode *temp=dummy,*t1=list1,*t2=list2;
         while(t1&&t2){
             if(t1->val>=t2->val){
@@ -29,5 +30,11 @@ public:
         if(t1)temp->next=t1;
         if(t2)temp->next=t2;
         return dummy->next;
+    }
+   
+
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+       return solve1(list1,list2);
     }
 };
