@@ -1,34 +1,24 @@
 class Solution {
 public:
     int countDays(int days, vector<vector<int>>& meetings) {
-               if (meetings.empty()) {
-            return days; // All days are available
-        }
-
-        sort(meetings.begin(), meetings.end());
-        
-        int currentStart = meetings[0][0], currentEnd = meetings[0][1];
-        int availableDays = 0, n = meetings.size();
-
-        if (currentStart > 1 && days > currentStart) {
-            availableDays += currentStart - 1;
-        }
-
-        for (int i = 1; i < n; i++) {
-            if (days <= currentEnd) break;
-
-            if (meetings[i][0] > currentEnd+1) {
-                availableDays += meetings[i][0] -(1+ currentEnd);
-                cout<< availableDays<<" ";
+        sort(meetings.begin(),meetings.end());
+        int start=meetings[0][0],end=meetings[0][1];
+        int ans=0,n=meetings.size();
+        if(start>1&&days>start)ans+=start-1;
+        for(int i=1;i<n;i++){
+            if(days<=end)break;
+            if(meetings[i][0]>end){
+                ans+=meetings[i][0]-(1+end);
             }
-
-            currentEnd = max(currentEnd, meetings[i][1]);
+            
+            end=max(end,meetings[i][1]);
         }
+        if(days>end)ans+=days-end;
+       return ans;
 
-        if (days > currentEnd) {
-            availableDays += days - (currentEnd);
-        }
 
-        return availableDays;
+
+
+
     }
 };
