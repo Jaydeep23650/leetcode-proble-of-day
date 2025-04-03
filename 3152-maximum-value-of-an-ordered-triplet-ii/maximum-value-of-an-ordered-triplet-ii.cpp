@@ -19,7 +19,7 @@ public:
             ans=max(ans,diff*right[i+1]);
         }
        
-       for(auto it:right)cout<<it<<" ";
+       
        return ans;
 
     }
