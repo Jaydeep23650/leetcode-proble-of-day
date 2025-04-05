@@ -5,7 +5,7 @@ public:
         if(i>=word1.size())return word2.size()-j;
          if(j>=word2.size())return word1.size()-i;
          if(dp[i][j]!=-1)return dp[i][j];
-        if(word1[i]==word2[j]) return solve(word1,word2,i+1,1+j,dp);
+        if(word1[i]==word2[j]) return dp[i][j]= solve(word1,word2,i+1,1+j,dp);
         int a=1+solve(word1,word2,i+1,j,dp);
         int b=1+solve(word1,word2,i,1+j,dp);
         int c=1+solve(word1,word2,i+1,1+j,dp);
